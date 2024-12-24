@@ -21,7 +21,7 @@ let App = () => {
 
 
 
-    let ctx = canvas.getContext('2d')!;
+    let ctx = canvas!.getContext('2d')!;
 
     let ws: WebSocket;
     let connect = () => {
@@ -75,12 +75,12 @@ let App = () => {
 
     window.ontouchend = () => isMouseDown = false;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas!.width = window.innerWidth;
+    canvas!.height = window.innerHeight;
 
     window.onresize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas!.width = window.innerWidth;
+      canvas!.height = window.innerHeight;
     }
 
     window.ontouchmove = ( e ) => {
@@ -133,7 +133,7 @@ let App = () => {
 
     setInterval(() => {
       ctx.fillStyle = '#0001';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, canvas!.width, canvas!.height);
     }, 2000);
 
     requestAnimationFrame(render);
