@@ -1,0 +1,11 @@
+input{
+    height: 10px;
+    width: 15%;
+    appearance: none;
+    transition: color 0.05s linear;
+    background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+    border-radius: 15px;
+    position: absolute;
+    bottom: 2%;
+    right: 1%;
+}

@@ -6,10 +6,21 @@ let App = () => {
 
   let hue = Math.random() * 360;
 
+  let colour = document.querySelector("#colour") as HTMLInputElement;
+
+  colour.value = hue.toString();
+
   let lastMouseX = 0;
   let lastMouseY = 0;
 
   onMount(() => {
+    colour.addEventListener("input", function(){
+      this.style.color = `hsl(${hue}, 100%, 50%)`;
+    });
+    colour.dispatchEvent(new Event("input"));
+
+
+
     let ctx = canvas.getContext('2d')!;
 
     let ws: WebSocket;
@@ -44,7 +55,15 @@ let App = () => {
 
     connect();
 
-    window.onmousedown = () => isMouseDown = true;
+    colour.onmouseup = () => {
+      hue = +colour.value;
+      ws.send(JSON.stringify({ type: "auth", hue }))
+    }
+    
+    window.onmousedown = (e) => {
+      if (e.target === colour) return;
+      isMouseDown = true;
+    }
     window.onmouseup = () => isMouseDown = false;
 
     window.ontouchstart = ( e ) => {
